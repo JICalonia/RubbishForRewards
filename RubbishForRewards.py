@@ -28,6 +28,7 @@ TRASH_TYPES = {
 # Title
 
 st.title("♻️ Rubbish-For-Rewards 🪙")
+st.write("[THIS SITE IS STILL IN BETA]")
 
 # Trash Bag Information
 
