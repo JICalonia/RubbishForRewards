@@ -20,7 +20,9 @@ MAX_WEIGHT = 15.00
 
 TRASH_TYPES = {
     "Plastic": 5,
-    "Paper": 3
+    "Paper": 3,
+    "Cans":, 7,
+    "Compost":, 2
 }
 
 # Title
