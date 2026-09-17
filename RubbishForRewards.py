@@ -55,7 +55,7 @@ st.divider()
 
 selected_type = st.selectbox(
     "Type",
-    ["Plastic", "Paper"]
+    ["Plastic", "Paper", "Cans", "Compost"]
 )
 
 entered_weight = st.number_input(
