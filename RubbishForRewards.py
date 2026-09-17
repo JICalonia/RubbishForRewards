@@ -9,5 +9,8 @@ st.button("Start Collecting")
 st.button("Submit for Rewards")
 
 st.write(
-    "[Support Me](https://ko-fi.com/datcoolpro101)          [Check My Socials](https://datcoolpro101.carrd.co/)"
+    "[Support Me](https://ko-fi.com/datcoolpro101)"
+)
+st.write(
+    "[Check My Socials](https://datcoolpro101.carrd.co/)"
 )
