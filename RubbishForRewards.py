@@ -31,7 +31,7 @@ TRASH_TYPES = {
 st.title("♻️ Rubbish-For-Rewards 🪙")
 st.write("BETA 1.2")
 st.write(" ")
-st.write("This is a simulation")
+st.write("This is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.")
 
 # Trash Bag Information
 
@@ -128,6 +128,21 @@ if st.button("Submit for Rewards"):
 
         st.rerun()
 
+# Mission
+
+@st.dialog("Missions")
+def show_popup():
+    st.write("Submit 25 kg worth of Paper waste")
+    st.button("Claim")
+
+    st.write("Submit 25 kg worth of Paper waste")
+    st.button("Claim")
+
+if st.button("Missions"):
+    show_popup()
+
+# Status
+
 st.markdown("### Status")
 
 if st.session_state.message:
@@ -137,6 +152,8 @@ if st.session_state.message:
 
     elif st.session_state.message_type == "error":
         st.error(st.session_state.message)
+
+# Extra Stuff that isn't related to THIS college project btw.
 
 st.write("[Support Me](https://ko-fi.com/datcoolpro101)")
 st.write("[Check My Socials](https://datcoolpro101.carrd.co/)")
