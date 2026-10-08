@@ -25,14 +25,15 @@ TRASH_TYPES = {
     "Compost": 2
 }
 
-# Title
+# TITLE
+# This is where I can type this
 
 st.title("♻️ Rubbish-For-Rewards 🪙")
 st.write("BETA 1.2")
+st.write(" ")
+st.write("This is a simulation")
 
 # Trash Bag Information
-
-st.markdown("### ---- Trash Bag ----")
 
 display_type = (
     st.session_state.bag_type
