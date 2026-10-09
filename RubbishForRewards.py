@@ -136,7 +136,7 @@ def show_popup():
     st.button("Claim")
 
     st.write("Submit 25 kg worth of Paper waste")
-    st.button("Test")
+    st.button("Claim")
 
 if st.button("Missions"):
     show_popup()
