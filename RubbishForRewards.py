@@ -31,7 +31,7 @@ TRASH_TYPES = {
 st.title("♻️ Rubbish-For-Rewards 🪙")
 st.write("BETA 1.2")
 st.write(" ")
-st.write("This is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.")
+st.write("Rubbish-For-Rewards is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.")
 
 # Trash Bag Information
 
@@ -137,6 +137,9 @@ def show_popup():
 
     st.write("Submit 25 kg worth of Paper waste")
     st.button("Claim", key="claim2")
+
+    st.write("Submit 25 kg worth of Paper waste")
+    st.button("Claim", key="claim3")
 
 if st.button("Missions"):
     show_popup()
