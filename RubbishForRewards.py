@@ -131,7 +131,7 @@ if st.button("Submit for Rewards"):
 # Mission
 
 @st.dialog("Missions")
-def show_popup():
+def show_popup1():
     st.write("Submit 25 kg worth of Paper waste")
     st.button("Claim")
 
@@ -139,7 +139,7 @@ def show_popup():
     st.button("Claim")
 
 if st.button("Missions"):
-    show_popup()
+    show_popup1()
 
 # Status
 
