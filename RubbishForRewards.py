@@ -55,73 +55,98 @@ st.divider()
 
 # Collection
 
-@st.button("Collect Waste")
-def collect_popup():
+if st.button("Collect Waste"):
+    st.session_state.step = 1
+    collection_popup()
 
-    # STEP 1
-    if st.session_state.collect_step == 1:
+    @st.dialog("Collect Waste")
+    def collection_popup():
 
-        selected_type = st.selectbox(
-            "Type",
-            options=list(TRASH_TYPES.keys()),
-            index=None,
-            placeholder="Select..."
-        )
+        # STEP 1
+        if st.session_state.step == 1:
 
-        weight = st.number_input(
-            "Weight (kg)",
-            min_value=0.0,
-            step=0.01,
-            value=0.0
-        )
+            waste_type = st.selectbox(
+                "Type",
+                options=list(TYPES.keys()),
+                index=None,
+                placeholder="Select..."
+            )
 
-        if st.button("Next"):
+            weight = st.number_input(
+                "Weight (kg)",
+                min_value=0.0,
+                step=0.1
+            )
 
-            if selected_type is None:
-                st.error("Select a type first.")
-                return
+            col1, col2 = st.columns(2)
 
-            if weight <= 0:
-                st.error("Enter a valid weight.")
-                return
+            with col1:
+                if st.button("Next"):
 
-            st.session_state.review_type = selected_type
-            st.session_state.review_weight = weight
-            st.session_state.collect_step = 2
+                    if waste_type is None:
+                        st.error("Select a type first.")
+                        return
 
-            st.rerun()
+                    if weight <= 0:
+                        st.error("Enter a valid weight.")
+                        return
 
-        # idk what to do with this 
+                    st.session_state.type = waste_type
+                    st.session_state.weight = weight
+                    st.session_state.step = 2
 
-        elif st.session_state.collect_step == 2:
+                    st.rerun()
+
+            with col2:
+                if st.button("Cancel"):
+                    st.session_state.reward_message = (
+                        "Collection canceled."
+                    )
+                    st.rerun()
+
+        # STEP 2
+        elif st.session_state.step == 2:
 
             st.subheader("Review Submission")
 
             st.write(
-                f"**Type:** {st.session_state.review_type}"
+                f"Type: {st.session_state.type}"
             )
 
             st.write(
-                f"**Weight:** {st.session_state.review_weight:.2f} kg"
+                f"Weight: {st.session_state.weight} kg"
             )
 
-            if st.button("Proceed"):
+            col1, col2 = st.columns(2)
 
-                reward = (
-                    TRASH_TYPES[st.session_state.review_type]
-                    * st.session_state.review_weight
-                )
+            with col1:
+                if st.button("Proceed"):
 
-                st.session_state.message = (
-                    f"Success! Reward Earned: "
-                    f"{reward:.2f} points"
-                )
+                    reward = (
+                        TYPES[st.session_state.type]
+                        * st.session_state.weight
+                    )
 
-                st.session_state.message_type = "success"
+                    st.session_state.reward_message = (
+                        f"✅ Success! Reward Earned: "
+                        f"{reward:.2f} points"
+                    )
 
-                st.session_state.collect_step = 1
+                    st.session_state.step = 1
 
-                st.rerun()
+                    st.rerun()
+
+            with col2:
+                if st.button("Cancel"):
+
+                    st.session_state.reward_message = (
+                        "Collection canceled."
+                    )
+
+                    st.session_state.step = 1
+
+                    st.rerun()
+                    
 # Mission
 
 @st.dialog("Missions")
