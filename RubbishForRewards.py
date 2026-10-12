@@ -92,36 +92,36 @@ def collect_popup():
             st.rerun()
 
         # idk what to do with this 
-        
+
         elif st.session_state.collect_step == 2:
 
-        st.subheader("Review Submission")
+            st.subheader("Review Submission")
 
-        st.write(
-            f"**Type:** {st.session_state.review_type}"
-        )
-
-        st.write(
-            f"**Weight:** {st.session_state.review_weight:.2f} kg"
-        )
-
-        if st.button("Proceed"):
-
-            reward = (
-                TRASH_TYPES[st.session_state.review_type]
-                * st.session_state.review_weight
+            st.write(
+                f"**Type:** {st.session_state.review_type}"
             )
 
-            st.session_state.message = (
-                f"Success! Reward Earned: "
-                f"{reward:.2f} points"
+            st.write(
+                f"**Weight:** {st.session_state.review_weight:.2f} kg"
             )
 
-            st.session_state.message_type = "success"
+            if st.button("Proceed"):
 
-            st.session_state.collect_step = 1
+                reward = (
+                    TRASH_TYPES[st.session_state.review_type]
+                    * st.session_state.review_weight
+                )
 
-            st.rerun()
+                st.session_state.message = (
+                    f"Success! Reward Earned: "
+                    f"{reward:.2f} points"
+                )
+
+                st.session_state.message_type = "success"
+
+                st.session_state.collect_step = 1
+
+                st.rerun()
 # Mission
 
 @st.dialog("Missions")
