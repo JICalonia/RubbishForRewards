@@ -37,13 +37,12 @@ st.write("Rubbish-For-Rewards is a simulation website designed to teach people a
 
 # Collection
 
-if st.button("Collect Waste"):
-
-    st.session_state.show_popup = True
-    st.session_state.popup_step = 1
-
 @st.dialog("Collect Waste")
 def collection_popup():
+    st.write("Hello")
+
+if st.button("Collect Waste"):
+    collection_popup()
 
     if st.session_state.show_popup:
     collection_popup()
