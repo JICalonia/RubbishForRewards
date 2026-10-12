@@ -42,11 +42,11 @@ if st.button("Collect Waste"):
     st.session_state.show_popup = True
     st.session_state.popup_step = 1
 
-if st.session_state.show_popup:
-    collection_popup()
-
 @st.dialog("Collect Waste")
 def collection_popup():
+
+    if st.session_state.show_popup:
+    collection_popup()
 
     # STEP 1
     
