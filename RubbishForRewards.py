@@ -1,24 +1,17 @@
 import streamlit as st
 
-# Session State Initialization
+# Initialize state
+defaults = {
+    "show_popup": False,
+    "popup_step": 1,
+    "selected_type": None,
+    "weight": 0.0,
+    "banner": None,
+    "banner_type": None
+}
 
-if "bag_type" not in st.session_state:
-    st.session_state.bag_type = None
-
-if "collected_weight" not in st.session_state:
-    st.session_state.collected_weight = 0.0
-
-if "message" not in st.session_state:
-    st.session_state.message = ""
-
-if "message_type" not in st.session_state:
-    st.session_state.message_type = ""
-
-if "step" not in st.session_state:
-    st.session_state.step = 1
-
-if "reward_message" not in st.session_state:
-    st.session_state.reward_message = None
+for key, value in defaults.items():
+    st.session_state.setdefault(key, value)
 
 # Constants
 
@@ -42,119 +35,134 @@ st.write("BETA 1.2")
 st.write(" ")
 st.write("Rubbish-For-Rewards is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.")
 
-# Trash Bag Information
-
-display_type = (
-    st.session_state.bag_type
-    if st.session_state.bag_type is not None
-    else "None"
-)
-
-st.write(f"**Type:** {display_type}")
-
-if st.session_state.collected_weight == 0.0:
-    st.error("Nothing in bag yet.")
-else:
-    st.write(
-        f"**Collected Weight:** "
-        f"{st.session_state.collected_weight:.2f} kg / {MAX_WEIGHT:.2f} kg"
-    )
-
-st.divider()
-
 # Collection
 
 if st.button("Collect Waste"):
-    st.session_state.step = 1
+
+    st.session_state.show_popup = True
+    st.session_state.popup_step = 1
+
+if st.session_state.show_popup:
     collection_popup()
 
-    @st.dialog("Collect Waste")
-    def collection_popup():
+@st.dialog("Collect Waste")
+def collection_popup():
 
-        # STEP 1
-        if st.session_state.step == 1:
+    # STEP 1
+    
+    if st.session_state.popup_step == 1:
 
-            waste_type = st.selectbox(
-                "Type",
-                options=list(TYPES.keys()),
-                index=None,
-                placeholder="Select..."
-            )
+        st.subheader("Waste Information")
 
-            weight = st.number_input(
-                "Weight (kg)",
-                min_value=0.0,
-                step=0.1
-            )
+        selected_type = st.selectbox(
+            "Type",
+            options=list(TRASH_TYPES.keys()),
+            index=None,
+            placeholder="Select...",
+            key="type_selector"
+        )
 
-            col1, col2 = st.columns(2)
+        weight = st.number_input(
+            "Weight (kg)",
+            min_value=0.0,
+            step=0.01,
+            value=st.session_state.weight
+        )
 
-            with col1:
-                if st.button("Next"):
+        col1, col2 = st.columns(2)
 
-                    if waste_type is None:
-                        st.error("Select a type first.")
-                        return
+        with col1:
+            if st.button("Next", key="next_btn"):
 
-                    if weight <= 0:
-                        st.error("Enter a valid weight.")
-                        return
+                if selected_type is None:
+                    st.error("Select a type first.")
+                    return
 
-                    st.session_state.type = waste_type
-                    st.session_state.weight = weight
-                    st.session_state.step = 2
+                if weight <= 0:
+                    st.error("Enter a valid weight.")
+                    return
 
-                    st.rerun()
+                st.session_state.selected_type = selected_type
+                st.session_state.weight = weight
+                st.session_state.popup_step = 2
 
-            with col2:
-                if st.button("Cancel"):
-                    st.session_state.reward_message = (
-                        "Collection canceled."
-                    )
-                    st.rerun()
+                st.rerun()
 
-        # STEP 2
-        elif st.session_state.step == 2:
+        with col2:
+            if st.button("Cancel", key="cancel_btn_1"):
 
-            st.subheader("Review Submission")
+                st.session_state.show_popup = False
+                st.session_state.popup_step = 1
 
-            st.write(
-                f"Type: {st.session_state.type}"
-            )
+                st.session_state.banner = (
+                    "Collection canceled."
+                )
 
-            st.write(
-                f"Weight: {st.session_state.weight} kg"
-            )
+                st.session_state.banner_type = "warning"
 
-            col1, col2 = st.columns(2)
+                st.rerun()
 
-            with col1:
-                if st.button("Proceed"):
+    # STEP 2
+    
+    elif st.session_state.popup_step == 2:
 
-                    reward = (
-                        TYPES[st.session_state.type]
-                        * st.session_state.weight
-                    )
+        st.subheader("Review Submission")
 
-                    st.session_state.reward_message = (
-                        f"✅ Success! Reward Earned: "
-                        f"{reward:.2f} points"
-                    )
+        st.write(
+            f"**Type:** {st.session_state.selected_type}"
+        )
 
-                    st.session_state.step = 1
+        st.write(
+            f"**Weight:** {st.session_state.weight:.2f} kg"
+        )
 
-                    st.rerun()
+        reward = (
+            TRASH_TYPES[st.session_state.selected_type]
+            * st.session_state.weight
+        )
 
-            with col2:
-                if st.button("Cancel"):
+        st.write(
+            f"**Estimated Reward:** {reward:.2f} points"
+        )
 
-                    st.session_state.reward_message = (
-                        "Collection canceled."
-                    )
+        col1, col2, col3 = st.columns(3)
 
-                    st.session_state.step = 1
+        with col1:
+            if st.button("Back", key="back_btn"):
 
-                    st.rerun()
+                st.session_state.popup_step = 1
+                st.rerun()
+
+        with col2:
+            if st.button("Proceed", key="proceed_btn"):
+
+                st.session_state.show_popup = False
+
+                st.session_state.banner = (
+                    f"Success! Reward Earned: "
+                    f"{reward:.2f} points"
+                )
+
+                st.session_state.banner_type = "success"
+
+                st.session_state.popup_step = 1
+
+                st.rerun()
+
+        with col3:
+            if st.button("Cancel", key="cancel_btn_2"):
+
+                st.session_state.show_popup = False
+
+                st.session_state.banner = (
+                    "Collection canceled."
+                )
+
+                st.session_state.banner_type = "warning"
+
+                st.session_state.popup_step = 1
+
+                st.rerun()
                     
 # Mission
 
@@ -171,18 +179,6 @@ def show_popup():
 
 if st.button("Missions"):
     show_popup()
-
-# Status
-
-st.markdown("### Status")
-
-if st.session_state.message:
-
-    if st.session_state.message_type == "success":
-        st.success(st.session_state.message)
-
-    elif st.session_state.message_type == "error":
-        st.error(st.session_state.message)
 
 # Extra Stuff that isn't related to THIS college project btw.
 
