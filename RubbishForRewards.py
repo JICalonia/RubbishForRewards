@@ -44,9 +44,6 @@ def collection_popup():
 if st.button("Collect Waste"):
     collection_popup()
 
-    if st.session_state.show_popup:
-    collection_popup()
-
     # STEP 1
     
     if st.session_state.popup_step == 1:
