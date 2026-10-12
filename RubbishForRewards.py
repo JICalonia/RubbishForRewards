@@ -53,81 +53,75 @@ else:
 
 st.divider()
 
-# Input Controls
+# Collection
 
-selected_type = st.selectbox(
-    "Type",
-    ["Plastic", "Paper", "Cans", "Compost"]
-)
+@st.dialog("Collect Waste")
+def collect_popup():
 
-entered_weight = st.number_input(
-    "Weight (kg)",
-    min_value=0.00,
-    max_value=15.00,
-    value=0.00,
-    step=0.01,
-    format="%.2f"
-)
+    # STEP 1
+    if st.session_state.collect_step == 1:
 
-# Start Collecting
-
-if st.button("Start Collecting"):
-
-    if st.session_state.bag_type is not None:
-        st.session_state.message = (
-            "Please submit the bag before collecting a new type."
-        )
-        st.session_state.message_type = "error"
-
-    elif entered_weight <= 0:
-        st.session_state.message = (
-            "Invalid weight. Weight must be greater than 0 and "
-            "less than or equal to 15.00 kg."
-        )
-        st.session_state.message_type = "error"
-
-    else:
-        st.session_state.bag_type = selected_type
-        st.session_state.collected_weight = entered_weight
-
-        st.session_state.message = (
-            f"Collection Recorded!\n\n"
-            f"Type: {selected_type}\n"
-            f"Weight: {entered_weight:.2f} kg"
-        )
-        st.session_state.message_type = "success"
-
-        st.rerun()
-
-# Submit For Rewards
-
-if st.button("Submit for Rewards"):
-
-    if st.session_state.collected_weight == 0.0:
-
-        st.session_state.message = (
-            "Nothing in bag yet."
-        )
-        st.session_state.message_type = "error"
-
-    else:
-
-        reward = (
-            st.session_state.collected_weight *
-            TRASH_TYPES[st.session_state.bag_type]
+        selected_type = st.selectbox(
+            "Type",
+            options=list(TRASH_TYPES.keys()),
+            index=None,
+            placeholder="Select..."
         )
 
-        st.session_state.message = (
-            f"Reward Earned: {reward:.2f} points"
+        weight = st.number_input(
+            "Weight (kg)",
+            min_value=0.0,
+            step=0.01,
+            value=0.0
         )
-        st.session_state.message_type = "success"
 
-        # Reset immediately
-        st.session_state.bag_type = None
-        st.session_state.collected_weight = 0.0
+        if st.button("Next"):
 
-        st.rerun()
+            if selected_type is None:
+                st.error("Select a type first.")
+                return
 
+            if weight <= 0:
+                st.error("Enter a valid weight.")
+                return
+
+            st.session_state.review_type = selected_type
+            st.session_state.review_weight = weight
+            st.session_state.collect_step = 2
+
+            st.rerun()
+
+        # idk what to do with this 
+        
+        elif st.session_state.collect_step == 2:
+
+        st.subheader("Review Submission")
+
+        st.write(
+            f"**Type:** {st.session_state.review_type}"
+        )
+
+        st.write(
+            f"**Weight:** {st.session_state.review_weight:.2f} kg"
+        )
+
+        if st.button("Proceed"):
+
+            reward = (
+                TRASH_TYPES[st.session_state.review_type]
+                * st.session_state.review_weight
+            )
+
+            st.session_state.message = (
+                f"Success! Reward Earned: "
+                f"{reward:.2f} points"
+            )
+
+            st.session_state.message_type = "success"
+
+            st.session_state.collect_step = 1
+
+            st.rerun()
 # Mission
 
 @st.dialog("Missions")
