@@ -14,15 +14,24 @@ if "message" not in st.session_state:
 if "message_type" not in st.session_state:
     st.session_state.message_type = ""
 
+if "step" not in st.session_state:
+    st.session_state.step = 1
+
+if "reward_message" not in st.session_state:
+    st.session_state.reward_message = None
+
 # Constants
 
 MAX_WEIGHT = 15.00
 
-TRASH_TYPES = {
+import streamlit as st
+
+# Reward multipliers
+TYPES = {
     "Plastic": 5,
     "Paper": 3,
-    "Cans": 7,
-    "Compost": 2
+    "Metal": 8,
+    "Glass": 4
 }
 
 # TITLE
