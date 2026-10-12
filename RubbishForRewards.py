@@ -55,7 +55,7 @@ st.divider()
 
 # Collection
 
-@st.dialog("Collect Waste")
+@st.button("Collect Waste")
 def collect_popup():
 
     # STEP 1
