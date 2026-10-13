@@ -37,6 +37,8 @@ st.write("BETA 1.2")
 st.write(" ")
 st.write("Rubbish-For-Rewards is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.")
 
+st.divider()
+
 # Collection
 
 @st.dialog("Collect Waste")
@@ -170,6 +172,8 @@ if st.button("Missions"):
     show_popup()
 
 # Extra Stuff that isn't related to THIS college project btw.
+
+st.divider()
 
 st.write("[Support Me](https://ko-fi.com/datcoolpro101)")
 st.write("[Check My Socials](https://datcoolpro101.carrd.co/)")
