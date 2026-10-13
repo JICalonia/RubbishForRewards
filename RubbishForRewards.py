@@ -108,7 +108,7 @@ def collection_popup():
         )
 
         reward = (
-            TRASH_TYPES[
+            TYPES[
                 st.session_state.selected_type
             ]
             * st.session_state.weight
