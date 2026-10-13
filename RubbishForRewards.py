@@ -57,6 +57,7 @@ def collection_popup():
         weight = st.number_input(
             "Weight (kg)",
             min_value=0.0,
+            max_value=MAX_WEIGHT,
             step=0.01
         )
 
