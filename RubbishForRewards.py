@@ -44,6 +44,8 @@ st.divider()
 st.write("Current Rank: Beginner")
 st.write("<number>/250 to next rank")
 
+st.divider()
+
 # COLLECTION
 
 @st.dialog("Collect Waste")
@@ -161,11 +163,11 @@ if st.session_state.banner:
         st.warning(st.session_state.banner)
                     
 # Mission
-
-st.write("50 XP per Mission reward claimed")
          
 @st.dialog("Missions")
 def show_popup():
+    st.write("50 XP per Mission reward claimed")
+    
     st.write("Submit 25 kg worth of Paper waste")
     st.button("Claim", key="claim1")
 
