@@ -41,10 +41,21 @@ st.divider()
 
 # XP AND STATUS
 
-st.write("Current Rank: Beginner")
-st.write("<number>/250 to next rank")
+st.subheader("XP & Status")
 
-st.divider()
+XP_TO_NEXT_RANK = 250
+
+current_xp = st.session_state.points
+
+st.write("**Current Rank:** Beginner")
+st.write(
+    f"**XP:** {current_xp:.0f}/{XP_TO_NEXT_RANK}"
+)
+
+st.progress(
+    min(current_xp / XP_TO_NEXT_RANK, 1.0),
+    text=f"{current_xp:.0f}/{XP_TO_NEXT_RANK} XP"
+)
 
 # COLLECTION
 
@@ -167,7 +178,7 @@ if st.session_state.banner:
 @st.dialog("Missions")
 def show_popup():
     st.write("50 XP per Mission reward claimed")
-    
+    st.write(" ")
     st.write("Submit 25 kg worth of Paper waste")
     st.button("Claim", key="claim1")
 
