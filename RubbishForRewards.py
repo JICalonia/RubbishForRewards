@@ -49,7 +49,7 @@ def collection_popup():
 
         selected_type = st.selectbox(
             "Type",
-            options=list(TRASH_TYPES.keys()),
+            options=list(TYPES.keys()),
             index=None,
             placeholder="Select..."
         )
