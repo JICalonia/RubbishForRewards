@@ -48,13 +48,10 @@ XP_TO_NEXT_RANK = 250
 current_xp = st.session_state.points
 
 st.write("**Current Rank:** Beginner")
-st.write(
-    f"**XP:** {current_xp:.0f}/{XP_TO_NEXT_RANK}"
-)
 
 st.progress(
     min(current_xp / XP_TO_NEXT_RANK, 1.0),
-    text=f"{current_xp:.0f}/{XP_TO_NEXT_RANK} XP"
+    text=f"{current_xp:.0f}/{XP_TO_NEXT_RANK} XP to next rank"
 )
 
 # COLLECTION
