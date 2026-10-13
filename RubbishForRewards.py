@@ -60,7 +60,7 @@ def collection_popup():
             step=0.01
         )
 
-        col1, col2 = st.columns(2)
+        col1 = st.columns(1)
 
         with col1:
 
@@ -78,19 +78,6 @@ def collection_popup():
                 st.session_state.weight = weight
 
                 st.session_state.popup_step = 2
-
-                st.rerun()
-
-        with col2:
-
-            if st.button("Cancel"):
-
-                st.session_state.show_popup = False
-
-                st.session_state.banner = "Collection canceled."
-                st.session_state.banner_type = "warning"
-
-                st.session_state.popup_step = 1
 
                 st.rerun()
 
