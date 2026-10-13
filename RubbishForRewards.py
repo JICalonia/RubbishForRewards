@@ -70,6 +70,10 @@ def collection_popup():
                     st.error("Enter a valid weight.")
                     st.stop()
 
+                if weight > MAX_WEIGHT:
+                    st.error(f"Weight cannot exceed {MAX_WEIGHT:.2f} kg.")
+                    st.stop()
+
                 st.session_state.selected_type = selected_type
                 st.session_state.weight = weight
 
