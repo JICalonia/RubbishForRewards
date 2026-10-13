@@ -60,11 +60,7 @@ def collection_popup():
             step=0.01
         )
 
-        col1 = st.columns(1)
-
-        with col1:
-
-            if st.button("Next"):
+        if st.button("Next"):
 
                 if selected_type is None:
                     st.error("Select a type first.")
