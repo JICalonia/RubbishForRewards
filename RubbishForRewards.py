@@ -39,7 +39,12 @@ st.write("Rubbish-For-Rewards is a simulation website designed to teach people a
 
 st.divider()
 
-# Collection
+# XP AND STATUS
+
+st.write("Current Rank: Beginner")
+st.write("<number>/250 to next rank")
+
+# COLLECTION
 
 @st.dialog("Collect Waste")
 def collection_popup():
@@ -157,15 +162,17 @@ if st.session_state.banner:
                     
 # Mission
 
+st.write("50 XP per Mission reward claimed")
+         
 @st.dialog("Missions")
 def show_popup():
     st.write("Submit 25 kg worth of Paper waste")
     st.button("Claim", key="claim1")
 
-    st.write("Submit 25 kg worth of Paper waste")
+    st.write("Submit 20 kg worth of Plastic waste")
     st.button("Claim", key="claim2")
 
-    st.write("Submit 25 kg worth of Paper waste")
+    st.write("Collect 150 Points")
     st.button("Claim", key="claim3")
 
 if st.button("Missions"):
