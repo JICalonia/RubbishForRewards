@@ -155,8 +155,6 @@ if st.button("Collect Waste"):
     st.session_state.active_dialog = "collect"
     st.session_state.popup_step = 1
 
-st.write("DEBUG:", st.session_state.active_dialog)
-
 if st.session_state.active_dialog == "collect":
     collection_popup()
 
@@ -170,11 +168,13 @@ if st.session_state.banner:
     elif st.session_state.banner_type == "warning":
         st.warning(st.session_state.banner)
 
+st.divider()
+
 # ––––––––––––––––
 # MISSIONS
 # ––––––––––––––––
          
-with st.expander("🎯 Missions"):
+with st.expander("Missions"):
 
     st.write("50 XP per Mission reward claimed")
 
