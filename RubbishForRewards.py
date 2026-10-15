@@ -192,70 +192,78 @@ st.divider()
 # ––––––––––––––––
 # MISSIONS
 # ––––––––––––––––
-         
+
+st.write("XP DEBUG:", st.session_state)
+
 with st.expander("Missions"):
 
     st.write("**50 XP per Mission reward claimed**")
 
-    # MISSION 1
+    # MISSION 1 - Submit 25 kg worth of Paper waste
+    if "mission1_claimed" not in st.session_state:
+        st.session_state.mission1_claimed = False
+    
     mission1_text = "Submit 25 kg worth of Paper waste"
-
+    
     if st.session_state.mission1_claimed:
+        st.success("Mission reward claimed!")
         st.write(f"✅ {mission1_text}")
     else:
         st.write(mission1_text)
     
     if st.button("Claim", key="claim1"):
     
-        if not st.session_state.mission1_claimed:
-
-            st.session_state.current_xp += 50
-            st.session_state.mission1_claimed = True
-
-            st.success("Mission reward claimed!")
-
-        else:
+        if st.session_state.mission1_claimed:
             st.warning("You already claimed this mission reward!")
+    
+        else:
+            st.session_state.points += 50      # replace with your XP variable
+            st.session_state.mission1_claimed = True
+            st.rerun()
 
-    # MISSION 2
+    # MISSION 2 - Submit 20 kg worth of Plastic waste
+    if "mission2_claimed" not in st.session_state:
+        st.session_state.mission2_claimed = False
+    
     mission2_text = "Submit 20 kg worth of Plastic waste"
-
+    
     if st.session_state.mission2_claimed:
+        st.success("Mission reward claimed!")
         st.write(f"✅ {mission2_text}")
     else:
         st.write(mission2_text)
     
-    if st.button("Claim", key="claim2"):
+    if st.button("Claim", key="claim1"):
     
-        if not st.session_state.mission2_claimed:
-
-            st.session_state.current_xp += 50
-            st.session_state.mission2_claimed = True
-
-            st.success("Mission reward claimed!")
-
-        else:
+        if st.session_state.mission2_claimed:
             st.warning("You already claimed this mission reward!")
+    
+        else:
+            st.session_state.points += 50      # replace with your XP variable
+            st.session_state.mission2_claimed = True
+            st.rerun()
 
-    # MISSION 3
-    mission3_text = "Collect 150 Points"
-
+    # MISSION 3 - Collect 150 Points
+    if "mission3_claimed" not in st.session_state:
+        st.session_state.mission3_claimed = False
+    
+    mission3_text = "Submit 20 kg worth of Plastic waste"
+    
     if st.session_state.mission3_claimed:
+        st.success("Mission reward claimed!")
         st.write(f"✅ {mission3_text}")
     else:
         st.write(mission3_text)
     
-    if st.button("Claim", key="claim3"):
+    if st.button("Claim", key="claim1"):
     
-        if not st.session_state.mission3_claimed:
-
-            st.session_state.current_xp += 50
-            st.session_state.mission3_claimed = True
-
-            st.success("Mission reward claimed!")
-
-        else:
+        if st.session_state.mission3_claimed:
             st.warning("You already claimed this mission reward!")
+    
+        else:
+            st.session_state.points += 50      # replace with your XP variable
+            st.session_state.mission3_claimed = True
+            st.rerun()
 
 # Extra Stuff that isn't related to THIS college project btw.
 
