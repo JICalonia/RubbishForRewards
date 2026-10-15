@@ -173,7 +173,7 @@ if st.session_state.banner:
 # Mission
          
 @st.dialog("Missions")
-def show_popup():
+def missions_popup():
     st.write("50 XP per Mission reward claimed")
     st.write(" ")
     st.write("Submit 25 kg worth of Paper waste")
@@ -186,7 +186,7 @@ def show_popup():
     st.button("Claim", key="claim3")
 
 if st.button("Missions"):
-    show_popup()
+    missions_popup()
 
 # Extra Stuff that isn't related to THIS college project btw.
 
