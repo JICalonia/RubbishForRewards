@@ -164,9 +164,6 @@ if st.session_state.active_dialog == "collect":
 elif st.session_state.active_dialog == "missions":
     missions_popup()
 
-st.session_state.active_dialog = None
-st.rerun()
-
 # Banner
 
 if st.session_state.banner:
@@ -197,7 +194,7 @@ def missions_popup():
 # MISSIONS BUTTON
 
 if st.button("Missions"):
-    st.session_state.active_dialog = False
+    st.session_state.active_dialog = "missions"
 
 # Extra Stuff that isn't related to THIS college project btw.
 
