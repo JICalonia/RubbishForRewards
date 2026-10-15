@@ -13,7 +13,8 @@ st.session_state.setdefault("selected_type", None)
 st.session_state.setdefault("weight", 0.0)
 
 # Rewards
-st.session_state.setdefault("points", 0) # XP
+st.session_state.setdefault("points", 0) # Rank XP
+st.session_state.setdefault("xpbonus", 0) # Bonus XP
 
 # Banners
 st.session_state.setdefault("banner", "")
@@ -74,9 +75,14 @@ st.progress(
     text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
 )
 
+# XP Bonus
+SESSION_BONUS = 100 # Det. the Sesh Bonus
+
+bonus_xp = st.session_state.xpbonus #Det. the Bonus XP
+
 st.progress(
-    min(current_xp / XP_TO_RANK_TWO, 1.0),
-    text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
+    min(bonus_xp / XP_BONUS, 1.0),
+    text=f"Session Bonus: {bonus_xp:.0f}/{SESSION_BONUS} XP"
 )
 
 # ––––––––––––––––
