@@ -192,7 +192,6 @@ def missions_popup():
 if st.button("Missions"):
     st.session_state.active_dialog = "missions"
 
-
 if st.session_state.active_dialog == "missions":
     missions_popup()
 
