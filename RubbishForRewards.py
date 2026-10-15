@@ -4,6 +4,7 @@ import streamlit as st
 
 st.session_state.setdefault("show_popup", False)
 st.session_state.setdefault("popup_step", 1)
+st.session_state.setdefault("show_missions", False)
 
 # Collection data
 st.session_state.setdefault("selected_type", None)
@@ -170,7 +171,7 @@ if st.session_state.banner:
     elif st.session_state.banner_type == "warning":
         st.warning(st.session_state.banner)
                     
-# Mission
+# MISSIONS
          
 @st.dialog("Missions")
 def missions_popup():
@@ -186,6 +187,10 @@ def missions_popup():
     st.button("Claim", key="claim3")
 
 if st.button("Missions"):
+    st.session_state.show_popup = False
+    st.session_state.show_missions = True
+
+if st.session_state.show_missions:
     missions_popup()
 
 # Extra Stuff that isn't related to THIS college project btw.
