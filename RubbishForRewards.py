@@ -81,7 +81,7 @@ SESSION_BONUS = 100 # Det. the Sesh Bonus
 bonus_xp = st.session_state.xpbonus #Det. the Bonus XP
 
 st.progress(
-    min(bonus_xp / XP_BONUS, 1.0),
+    min(bonus_xp / SESSION_BONUS, 1.0),
     text=f"Session Bonus: {bonus_xp:.0f}/{SESSION_BONUS} XP"
 )
 
