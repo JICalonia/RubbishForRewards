@@ -174,16 +174,18 @@ if st.session_state.banner:
 # MISSIONS
 # ––––––––––––––––
          
-st.write("50 XP per Mission reward claimed")
-st.write(" ")
-st.write("Submit 25 kg worth of Paper waste")
-st.button("Claim", key="claim1")
+with st.expander("🎯 Missions"):
 
-st.write("Submit 20 kg worth of Plastic waste")
-st.button("Claim", key="claim2")
+    st.write("50 XP per Mission reward claimed")
 
-st.write("Collect 150 Points")
-st.button("Claim", key="claim3")
+    st.write("Submit 25 kg worth of Paper waste")
+    st.button("Claim", key="claim1")
+
+    st.write("Submit 20 kg worth of Plastic waste")
+    st.button("Claim", key="claim2")
+
+    st.write("Collect 150 Points")
+    st.button("Claim", key="claim3")
 
 # Extra Stuff that isn't related to THIS college project btw.
 
