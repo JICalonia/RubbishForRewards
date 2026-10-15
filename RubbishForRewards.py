@@ -138,7 +138,7 @@ def collection_popup():
 
             if st.button("Proceed"):
 
-                st.session_state.show_popup = False
+                st.session_state.active_dialog = False
 
                 st.session_state.banner = (
                     f"Success! Reward Earned: "
@@ -146,9 +146,7 @@ def collection_popup():
                 )
 
                 st.session_state.banner_type = "success"
-
                 st.session_state.popup_step = 1
-
                 st.rerun()
                 
 # COLLECT BUTTON 
@@ -156,6 +154,8 @@ def collection_popup():
 if st.button("Collect Waste"):
     st.session_state.active_dialog = "collect"
     st.session_state.popup_step = 1
+
+st.write("DEBUG:", st.session_state.active_dialog)
 
 if st.session_state.active_dialog == "collect":
     collection_popup()
