@@ -29,6 +29,10 @@ if "mission2_claimed" not in st.session_state:
 if "mission3_claimed" not in st.session_state:
     st.session_state.mission3_claimed = False
 
+# Current XP
+if "current_xp" not in st.session_state:
+    st.session_state.current_xp = 0
+
 # Constants
 
 MAX_WEIGHT = 15.00
@@ -52,19 +56,21 @@ st.write("Rubbish-For-Rewards is a simulation website designed to teach people a
 
 st.divider()
 
+# ––––––––––––––––
 # XP AND STATUS
+# ––––––––––––––––
 
 st.subheader("XP & Status")
 
-XP_TO_NEXT_RANK = 250
+XP_TO_RANK_TWO = 250
 
 current_xp = st.session_state.points
 
 st.write("**Current Rank:** Beginner")
 
 st.progress(
-    min(current_xp / XP_TO_NEXT_RANK, 1.0),
-    text=f"{current_xp:.0f}/{XP_TO_NEXT_RANK} XP to next rank"
+    min(current_xp / XP_TO_RANK_TWO, 1.0),
+    text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
 )
 
 # ––––––––––––––––
