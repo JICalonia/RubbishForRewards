@@ -5,7 +5,7 @@ import streamlit as st
 # ––––––––––––––––
 
 # Collection Pop-up
-st.session_state.setdefault("active_dialog", None)
+st.session_state.setdefault("active_dialog", None) # Collect Waste
 st.session_state.setdefault("popup_step", 1)
 
 # Collection data
@@ -13,7 +13,7 @@ st.session_state.setdefault("selected_type", None)
 st.session_state.setdefault("weight", 0.0)
 
 # Rewards
-st.session_state.setdefault("points", 0)
+st.session_state.setdefault("points", 0) # XP
 
 # Banners
 st.session_state.setdefault("banner", "")
@@ -43,14 +43,15 @@ TYPES = {
     "Plastic": 5,
     "Paper": 3,
     "Cans": 7,
-    "Compost": 2
+    "Compost": 2,
+    "Glass": 8
 }
 
 # TITLE
 # This is where I can type this
 
 st.title("♻️ Rubbish-For-Rewards 🪙")
-st.write("BETA 1.2")
+st.write("BETA 1.3")
 st.write(" ")
 st.write("Rubbish-For-Rewards is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.")
 
@@ -60,13 +61,18 @@ st.divider()
 # XP AND STATUS
 # ––––––––––––––––
 
-st.subheader("XP & Status")
+st.subheader("Your Rank")
 
 XP_TO_RANK_TWO = 250
 
 current_xp = st.session_state.points
 
 st.write("**Current Rank:** Beginner")
+
+st.progress(
+    min(current_xp / XP_TO_RANK_TWO, 1.0),
+    text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
+)
 
 st.progress(
     min(current_xp / XP_TO_RANK_TWO, 1.0),
