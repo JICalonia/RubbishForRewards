@@ -2,9 +2,8 @@ import streamlit as st
 
 # SESSION STATE
 
-st.session_state.setdefault("show_popup", False)
+st.session_state.setdefault("active_dialog", None)
 st.session_state.setdefault("popup_step", 1)
-st.session_state.setdefault("show_missions", False)
 
 # Collection data
 st.session_state.setdefault("selected_type", None)
@@ -55,7 +54,9 @@ st.progress(
     text=f"{current_xp:.0f}/{XP_TO_NEXT_RANK} XP to next rank"
 )
 
+# ––––––––––––––––
 # COLLECTION
+# ––––––––––––––––
 
 @st.dialog("Collect Waste")
 def collection_popup():
@@ -150,16 +151,21 @@ def collection_popup():
 
                 st.rerun()
                 
-# BUTTON
+# COLLECT BUTTON 
 
 if st.button("Collect Waste"):
-
-    st.session_state.active_dialog = True
+    st.session_state.active_dialog = "collect"
     st.session_state.popup_step = 1
 
 # Show dialog
-if st.session_state.active_dialog:
+if st.session_state.active_dialog == "collect":
     collection_popup()
+
+elif st.session_state.active_dialog == "missions":
+    missions_popup()
+
+st.session_state.active_dialog = None
+st.rerun()
 
 # Banner
 
@@ -170,8 +176,10 @@ if st.session_state.banner:
 
     elif st.session_state.banner_type == "warning":
         st.warning(st.session_state.banner)
-                    
+
+# ––––––––––––––––
 # MISSIONS
+# ––––––––––––––––
          
 @st.dialog("Missions")
 def missions_popup():
@@ -186,12 +194,10 @@ def missions_popup():
     st.write("Collect 150 Points")
     st.button("Claim", key="claim3")
 
+# MISSIONS BUTTON
+
 if st.button("Missions"):
     st.session_state.active_dialog = False
-    st.session_state.show_missions = True
-
-if st.session_state.active_dialog:
-    missions_popup()
 
 # Extra Stuff that isn't related to THIS college project btw.
 
