@@ -174,26 +174,16 @@ if st.session_state.banner:
 # MISSIONS
 # ––––––––––––––––
          
-@st.dialog("Missions")
-def missions_popup():
-    st.write("50 XP per Mission reward claimed")
-    st.write(" ")
-    st.write("Submit 25 kg worth of Paper waste")
-    st.button("Claim", key="claim1")
+st.write("50 XP per Mission reward claimed")
+st.write(" ")
+st.write("Submit 25 kg worth of Paper waste")
+st.button("Claim", key="claim1")
 
-    st.write("Submit 20 kg worth of Plastic waste")
-    st.button("Claim", key="claim2")
+st.write("Submit 20 kg worth of Plastic waste")
+st.button("Claim", key="claim2")
 
-    st.write("Collect 150 Points")
-    st.button("Claim", key="claim3")
-
-# MISSIONS BUTTON
-
-if st.button("Missions"):
-    st.session_state.active_dialog = "missions"
-
-if st.session_state.active_dialog == "missions":
-    missions_popup()
+st.write("Collect 150 Points")
+st.button("Claim", key="claim3")
 
 # Extra Stuff that isn't related to THIS college project btw.
 
