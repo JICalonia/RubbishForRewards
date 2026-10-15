@@ -233,7 +233,7 @@ with st.expander("Missions"):
     else:
         st.write(mission2_text)
     
-    if st.button("Claim", key="claim1"):
+    if st.button("Claim", key="claim2"):
     
         if st.session_state.mission2_claimed:
             st.warning("You already claimed this mission reward!")
@@ -255,7 +255,7 @@ with st.expander("Missions"):
     else:
         st.write(mission3_text)
     
-    if st.button("Claim", key="claim1"):
+    if st.button("Claim", key="claim3"):
     
         if st.session_state.mission3_claimed:
             st.warning("You already claimed this mission reward!")
