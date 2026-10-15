@@ -157,12 +157,8 @@ if st.button("Collect Waste"):
     st.session_state.active_dialog = "collect"
     st.session_state.popup_step = 1
 
-# Show dialog
 if st.session_state.active_dialog == "collect":
     collection_popup()
-
-elif st.session_state.active_dialog == "missions":
-    missions_popup()
 
 # Banner
 
@@ -195,6 +191,10 @@ def missions_popup():
 
 if st.button("Missions"):
     st.session_state.active_dialog = "missions"
+
+
+if st.session_state.active_dialog == "missions":
+    missions_popup()
 
 # Extra Stuff that isn't related to THIS college project btw.
 
