@@ -34,6 +34,12 @@ if "mission3_claimed" not in st.session_state:
 if "mission1_status" not in st.session_state:
     st.session_state.mission1_status = 0
 
+if "mission2_status" not in st.session_state:
+    st.session_state.mission2_status = 0
+
+if "mission3_status" not in st.session_state:
+    st.session_state.mission3_status = 0
+
 # Current XP
 if "current_xp" not in st.session_state:
     st.session_state.current_xp = 0
@@ -228,7 +234,10 @@ with st.expander("Missions"):
     else:
         st.write(mission1_text)
 
-    st.progress(min(st.session_state.mission1_status / 25, 1.0))
+    st.progress(
+        min(st.session_state.mission1_status / 25, 1.0),
+        text=f"{mission1_status:.0f}/{M1_REQ}"
+    )
     
     if st.button("Claim", key="claim1"):
     
@@ -255,7 +264,7 @@ with st.expander("Missions"):
         st.write(mission2_text)
 
     st.progress(
-        min(mission2_status / M2_REQ, 1.0),
+        min(st.session_state.mission2_status / 20, 1.0),
         text=f"{mission2_status:.0f}/{M2_REQ}"
     )
     
@@ -284,7 +293,7 @@ with st.expander("Missions"):
         st.write(mission3_text)
 
     st.progress(
-        min(mission3_status / M3_REQ, 1.0),
+        min(st.session_state.mission3_status / 150, 1.0),
         text=f"{mission3_status:.0f}/{M3_REQ}"
     )
     
