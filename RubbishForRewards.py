@@ -30,6 +30,10 @@ if "mission2_claimed" not in st.session_state:
 if "mission3_claimed" not in st.session_state:
     st.session_state.mission3_claimed = False
 
+# Mission Status
+if "mission1_status" not in st.session_state:
+    st.session_state.mission1_status = 0
+
 # Current XP
 if "current_xp" not in st.session_state:
     st.session_state.current_xp = 0
@@ -215,7 +219,6 @@ with st.expander("Missions"):
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
 
-    mission1_status = 25
     M1_REQ = 25
     mission1_text = "Submit 25 kg worth of Paper waste"
 
@@ -225,10 +228,7 @@ with st.expander("Missions"):
     else:
         st.write(mission1_text)
 
-    st.progress(
-        min(mission1_status / M1_REQ, 1.0),
-        text=f"{mission1_status:.0f}/{M1_REQ}"
-    )
+    st.progress(min(st.session_state.mission1_status / 25, 1.0))
     
     if st.button("Claim", key="claim1"):
     
