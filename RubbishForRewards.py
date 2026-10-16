@@ -214,8 +214,9 @@ with st.expander("Missions"):
     # MISSION 1 - Submit 25 kg worth of Paper waste
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
-    
-    mission1_text = "Submit 25 kg worth of Paper waste"
+
+    mission1_status = 25 / 25
+    mission1_text = f"Submit 25 kg worth of Paper waste **[{mission1_status}]**"
     
     if st.session_state.mission1_claimed:
         st.write(f"✅ {mission1_text}")
@@ -236,8 +237,9 @@ with st.expander("Missions"):
     # MISSION 2 - Submit 20 kg worth of Plastic waste
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
-    
-    mission2_text = "Submit 20 kg worth of Plastic waste"
+
+    mission2_status = 20 / 20
+    mission2_text = f"Submit 20 kg worth of Plastic waste **[{mission2_status}]**"
     
     if st.session_state.mission2_claimed:
         st.write(f"✅ {mission2_text}")
@@ -258,8 +260,9 @@ with st.expander("Missions"):
     # MISSION 3 - Collect 150 Points
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
-    
-    mission3_text = "Collect 150 Points"
+
+    mission3_status = 150 / 150 
+    mission3_text = f"Collect 150 Points **[{mission3_status}]**"
     
     if st.session_state.mission3_claimed:
         st.write(f"✅ {mission3_text}")
