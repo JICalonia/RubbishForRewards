@@ -217,18 +217,18 @@ with st.expander("Missions"):
 
     mission1_status = 25
     M1_REQ = 25
-    
     mission1_text = "Submit 25 kg worth of Paper waste"
-    st.progress(
-        min(mission1_status / M1_REQ, 1.0),
-        text=f"{mission1_status:.0f}/{M1_REQ}"
-    )
-    
+
     if st.session_state.mission1_claimed:
         st.write(f"✅ {mission1_text}")
         st.success("Mission reward claimed!")
     else:
         st.write(mission1_text)
+
+    st.progress(
+        min(mission1_status / M1_REQ, 1.0),
+        text=f"{mission1_status:.0f}/{M1_REQ}"
+    )
     
     if st.button("Claim", key="claim1"):
     
@@ -246,18 +246,18 @@ with st.expander("Missions"):
 
     mission2_status = 20
     M2_REQ = 20
-    
     mission2_text = "Submit 20 kg worth of Plastic waste"
-    st.progress(
-        min(mission2_status / M2_REQ, 1.0),
-        text=f"{mission2_status:.0f}/{M2_REQ}"
-    )
     
     if st.session_state.mission2_claimed:
         st.write(f"✅ {mission2_text}")
         st.success("Mission reward claimed!")
     else:
         st.write(mission2_text)
+
+    st.progress(
+        min(mission2_status / M2_REQ, 1.0),
+        text=f"{mission2_status:.0f}/{M2_REQ}"
+    )
     
     if st.button("Claim", key="claim2"):
     
@@ -275,18 +275,18 @@ with st.expander("Missions"):
 
     mission3_status = 150
     M3_REQ = 150
-    
     mission3_text = "Collect 150 Points"
-    st.progress(
-        min(mission3_status / M3_REQ, 1.0),
-        text=f"{mission3_status:.0f}/{M3_REQ}"
-    )
     
     if st.session_state.mission3_claimed:
         st.write(f"✅ {mission3_text}")
         st.success("Mission reward claimed!")
     else:
         st.write(mission3_text)
+
+    st.progress(
+        min(mission3_status / M3_REQ, 1.0),
+        text=f"{mission3_status:.0f}/{M3_REQ}"
+    )
     
     if st.button("Claim", key="claim3"):
     
