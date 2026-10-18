@@ -185,14 +185,15 @@ def collection_popup():
 
                 st.session_state.active_dialog = False
 
-                st.session_state.points += reward    # Adds the XP to the Rank Bar
+                bonus_xp = reward // 5    # Divides the Reward Earned to 5 and leaving the quotient
+                st.session_state.points += bonus_xp    # Adds the XP to the Rank Bar
 
                 bonus_earned = reward // 5    # Divides the Reward Earned to 5 and leaving the quotient
                 st.session_state.xpbonus += bonus_earned    # Adds the XP to the Bonus Bar
 
                 st.session_state.banner = (
                     f"Success! Reward Earned: {reward:.2f} points"
-                    f"(+{bonus_earned} Bonus XP)"
+                    f" (+{bonus_earned} Bonus XP)"
                 )
 
                 st.session_state.banner_type = "success"
