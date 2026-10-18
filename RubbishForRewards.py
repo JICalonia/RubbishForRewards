@@ -86,7 +86,7 @@ st.progress(
 )
 
 # XP Bonus
-SESSION_BONUS = 100 # Det. the Sesh Bonus
+SESSION_BONUS = 100 # Det. the Session Bonus
 
 bonus_xp = st.session_state.xpbonus #Det. the Bonus XP
 
@@ -168,6 +168,7 @@ def collection_popup():
 
         col1, col2 = st.columns(2)
 
+        # Back Button
         with col1:
 
             if st.button("Back"):
@@ -175,6 +176,7 @@ def collection_popup():
                 st.session_state.popup_step = 1
                 st.rerun()
 
+        # Proceed Button
         with col2:
 
             if st.button("Proceed"):
@@ -225,7 +227,7 @@ with st.expander("Missions"):
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
 
-    mission1_status = st.session_state.mission1_status
+    mission1_status = st.session_state.mission1_status # Anyalyses the Mission Status
     M1_REQ = 25
     mission1_text = "Submit 25 kg worth of Paper waste"
 
@@ -254,7 +256,7 @@ with st.expander("Missions"):
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
 
-    mission2_status = st.session_state.mission2_status
+    mission2_status = st.session_state.mission2_status # Anyalyses the Mission Status
     M2_REQ = 20
     mission2_text = "Submit 20 kg worth of Plastic waste"
     
@@ -283,7 +285,7 @@ with st.expander("Missions"):
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
 
-    mission3_status = st.session_state.mission3_status
+    mission3_status = st.session_state.mission3_status # Anyalyses the Mission Status
     M3_REQ = 150
     mission3_text = "Collect 150 Points"
     
@@ -308,7 +310,9 @@ with st.expander("Missions"):
             st.session_state.mission3_claimed = True
             st.rerun()
 
+# ––––––––––––––––
 # Extra Stuff that isn't related to THIS college project btw.
+# ––––––––––––––––
 
 st.divider()
 
