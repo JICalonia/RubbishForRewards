@@ -200,6 +200,7 @@ def collection_popup():
                 st.session_state.popup_step = 1
                 st.rerun()
                 
+# ----------------
 # COLLECT BUTTON 
 
 if st.button("Collect Waste"):
@@ -231,6 +232,7 @@ with st.expander("Missions"):
 
     st.write("**50 XP per Mission reward claimed**")
 
+    # ----------------
     # MISSION 1 - Submit 25 kg worth of Paper waste
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
@@ -260,6 +262,7 @@ with st.expander("Missions"):
             st.session_state.mission1_claimed = True
             st.rerun()
 
+    # ----------------
     # MISSION 2 - Submit 20 kg worth of Plastic waste
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
@@ -289,6 +292,7 @@ with st.expander("Missions"):
             st.session_state.mission2_claimed = True
             st.rerun()
 
+    # ----------------
     # MISSION 3 - Collect 150 Points
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
