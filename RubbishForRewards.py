@@ -9,8 +9,8 @@ st.session_state.setdefault("active_dialog", None) # Collect Waste
 st.session_state.setdefault("popup_step", 1)
 
 # Collection data
-st.session_state.setdefault("selected_type", None)
-st.session_state.setdefault("weight", 0.0)
+st.session_state.setdefault("selected_type", None) # Selected Type
+st.session_state.setdefault("weight", 0.0) #Weight
 
 # Rewards
 st.session_state.setdefault("points", 0) # Rank XP
@@ -74,7 +74,8 @@ st.divider()
 
 st.subheader("Your Rank")
 
-XP_TO_RANK_TWO = 250
+# XP Rank
+XP_TO_RANK_TWO = 250 # Det. the current rank 
 
 current_xp = st.session_state.points
 
@@ -85,7 +86,7 @@ st.progress(
     text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
 )
 
-# XP Bonus
+# Session XP Bonus
 SESSION_BONUS = 100 # Det. the Session Bonus
 
 bonus_xp = st.session_state.xpbonus #Det. the Bonus XP
@@ -155,6 +156,7 @@ def collection_popup():
             f"**Weight:** {st.session_state.weight:.2f} kg"
         )
 
+        # Reward = Type * Weight
         reward = (
             TYPES[
                 st.session_state.selected_type
@@ -183,9 +185,14 @@ def collection_popup():
 
                 st.session_state.active_dialog = False
 
+                st.session_state.points += reward    # Adds the XP to the Rank Bar
+
+                bonus_earned = reward // 5    # Divides the Reward Earned to 5 and leaving the quotient
+                st.session_state.bonus_xp += bonus_earned    # Adds the XP to the Bonus Bar
+
                 st.session_state.banner = (
-                    f"Success! Reward Earned: "
-                    f"{reward:.2f} points"
+                    f"Success! Reward Earned: {reward:.2f} points"
+                    f"(+{bonus_earned} Bonus XP)"
                 )
 
                 st.session_state.banner_type = "success"
