@@ -270,7 +270,7 @@ with st.expander("Missions"):
 
     st.progress(
         min(st.session_state.mission1_status / 25, 1.0),
-        text=f"{mission1_status:.0f}/{M1_REQ}"
+        text=f"{mission1_status:.2f}/{M1_REQ}"
     )
     
     if st.button("Claim", key="claim1"):
@@ -305,7 +305,7 @@ with st.expander("Missions"):
 
     st.progress(
         min(st.session_state.mission2_status / 20, 1.0),
-        text=f"{mission2_status:.0f}/{M2_REQ}"
+        text=f"{mission2_status:.2f}/{M2_REQ}"
     )
     
     if st.button("Claim", key="claim2"):
@@ -340,7 +340,7 @@ with st.expander("Missions"):
 
     st.progress(
         min(st.session_state.mission3_status / 200, 1.0),
-        text=f"{mission3_status:.0f}/{M3_REQ}"
+        text=f"{mission3_status:.2f}/{M3_REQ}"
     )
     
     if st.button("Claim", key="claim3"):
