@@ -86,6 +86,8 @@ current_xp = st.session_state.points
 
 current_xp = st.session_state.points
 
+st.write(f"**Current Rank:** {current_rank}") # Dets. the Current Rank
+
 if current_xp < XP_TO_RANK_TWO:
 
     current_rank = "Beginner"
@@ -106,7 +108,6 @@ else:
         text=f"{rank_xp:.0f}/{XP_TO_RANK_THREE} XP to next rank"
     )
 
-st.write(f"**Current Rank:** {current_rank}") # Dets. the Current Rank
 
 # Session XP Bonus
 SESSION_BONUS = 100
