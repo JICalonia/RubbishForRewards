@@ -246,6 +246,10 @@ with st.expander("Missions"):
 
     # ----------------
     # MISSION 1 - Submit 25 kg worth of Paper waste
+
+    if st.session_state.selected_type == "Paper":
+        st.session_state.mission1_status += st.session_state.weight
+        
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
 
@@ -265,17 +269,25 @@ with st.expander("Missions"):
     )
     
     if st.button("Claim", key="claim1"):
-    
+
         if st.session_state.mission1_claimed:
             st.warning("You already claimed this mission reward!")
-    
-        else:
-            st.session_state.points += 50      # replace with your XP variable
+
+        elif st.session_state.mission1_status >= M1_REQ:
+            st.success("Mission reward claimed!")
+            st.session_state.points += 50
             st.session_state.mission1_claimed = True
             st.rerun()
 
+        else:
+            st.error("Mission still incomplete to claim reward.")
+
     # ----------------
     # MISSION 2 - Submit 20 kg worth of Plastic waste
+
+    if st.session_state.selected_type == "Plastic":
+        st.session_state.mission2_status += st.session_state.weight
+        
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
 
@@ -299,13 +311,19 @@ with st.expander("Missions"):
         if st.session_state.mission2_claimed:
             st.warning("You already claimed this mission reward!")
     
-        else:
-            st.session_state.points += 50      # replace with your XP variable
+        elif st.session_state.mission2_status >= M2_REQ:
+            st.success("Mission reward claimed!")
+            st.session_state.points += 50
             st.session_state.mission2_claimed = True
             st.rerun()
+    
+        else:
+            st.error("Mission still incomplete to claim reward.")
 
     # ----------------
     # MISSION 3 - Collect 150 Points
+    st.session_state.mission3_status = st.session_state.points
+    
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
 
@@ -329,11 +347,15 @@ with st.expander("Missions"):
         if st.session_state.mission3_claimed:
             st.warning("You already claimed this mission reward!")
     
-        else:
-            st.session_state.points += 50      # replace with your XP variable
+        elif st.session_state.mission3_status >= M3_REQ:
+            st.success("Mission reward claimed!")
+            st.session_state.points += 50
             st.session_state.mission3_claimed = True
             st.rerun()
-
+    
+        else:
+            st.error("Mission still incomplete to claim reward.")
+            
 # ––––––––––––––––
 # Extra Stuff that isn't related to THIS college project btw.
 # ––––––––––––––––
