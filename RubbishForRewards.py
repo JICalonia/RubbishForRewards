@@ -96,7 +96,7 @@ SESSION_BONUS = 100
 bonus_xp = min(
     st.session_state.xpbonus,
     SESSION_BONUS
-)
+) # Caps the max Bonus XP
 
 st.progress(
     bonus_xp / SESSION_BONUS,
@@ -258,8 +258,13 @@ with st.expander("Missions"):
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
 
-    mission1_status = st.session_state.mission1_status # Analyzes the Mission Status
     M1_REQ = 25
+    
+    mission1_status = min(
+        st.session_state.mission1_status,
+        M1_REQ
+    ) # Analyzes the Mission Status
+    
     mission1_text = "Submit 25 kg worth of Paper waste"
 
     if st.session_state.mission1_claimed:
@@ -293,8 +298,12 @@ with st.expander("Missions"):
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
 
-    mission2_status = st.session_state.mission2_status # Analyzes the Mission Status
     M2_REQ = 20
+    mission2_status = min(
+        st.session_state.mission2_status,
+        M2_REQ
+    ) # Analyzes the Mission Status
+    
     mission2_text = "Submit 20 kg worth of Plastic waste"
     
     if st.session_state.mission2_claimed:
@@ -328,8 +337,12 @@ with st.expander("Missions"):
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
 
-    mission3_status = st.session_state.mission3_status # Analyzes the Mission Status
     M3_REQ = 200
+    mission3_status = min(
+        st.session_state.mission3_status,
+        M3_REQ
+    ) # Analyzes the Mission Status
+    
     mission3_text = "Collect 200 Points"
     
     if st.session_state.mission3_claimed:
