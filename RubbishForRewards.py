@@ -166,14 +166,8 @@ def collection_popup():
         reward = TYPES[st.session_state.selected_type] * st.session_state.weight
         st.session_state.reward_total += reward
 
-        mission_updates = {
-            "Paper": "mission1_status",
-            "Plastic": "mission2_status",
-        }
-
-        if st.session_state.selected_type in mission_updates:
-            st.session_state[mission_updates[st.session_state.selected_type]] += st.session_state.weight
-
+        # VOID
+        
         st.write(
             f"**Reward:** {reward:.2f} points"
         )
@@ -193,6 +187,12 @@ def collection_popup():
 
             if st.button("Proceed"):
 
+                if st.session_state.selected_type == "Paper":
+                    st.session_state.mission1_status += st.session_state.weight
+
+                elif st.session_state.selected_type == "Plastic":
+                    st.session_state.mission2_status += st.session_state.weight
+                    
                 st.write(selected_type)
                 st.write(weight)
                 
@@ -263,8 +263,7 @@ with st.expander("Missions"):
     # ----------------
     # MISSION 1 - Submit 25 kg worth of Paper waste
 
-    if st.session_state.selected_type == "Paper":
-        st.session_state.mission1_status += st.session_state.weight
+    # VOID
         
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
@@ -301,8 +300,7 @@ with st.expander("Missions"):
     # ----------------
     # MISSION 2 - Submit 20 kg worth of Plastic waste
 
-    if st.session_state.selected_type == "Plastic":
-        st.session_state.mission2_status += st.session_state.weight
+    # VOID
         
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
