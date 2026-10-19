@@ -249,7 +249,7 @@ with st.expander("Missions"):
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
 
-    mission1_status = st.session_state.mission1_status # Anyalyses the Mission Status
+    mission1_status = st.session_state.mission1_status # Analyzes the Mission Status
     M1_REQ = 25
     mission1_text = "Submit 25 kg worth of Paper waste"
 
@@ -279,7 +279,7 @@ with st.expander("Missions"):
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
 
-    mission2_status = st.session_state.mission2_status # Anyalyses the Mission Status
+    mission2_status = st.session_state.mission2_status # Analyzes the Mission Status
     M2_REQ = 20
     mission2_text = "Submit 20 kg worth of Plastic waste"
     
@@ -309,9 +309,9 @@ with st.expander("Missions"):
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
 
-    mission3_status = st.session_state.mission3_status # Anyalyses the Mission Status
-    M3_REQ = 150
-    mission3_text = "Collect 150 Points"
+    mission3_status = st.session_state.mission3_status # Analyzes the Mission Status
+    M3_REQ = 200
+    mission3_text = "Collect 200 Points"
     
     if st.session_state.mission3_claimed:
         st.write(f"✅ {mission3_text}")
@@ -320,7 +320,7 @@ with st.expander("Missions"):
         st.write(mission3_text)
 
     st.progress(
-        min(st.session_state.mission3_status / 150, 1.0),
+        min(st.session_state.mission3_status / 200, 1.0),
         text=f"{mission3_status:.0f}/{M3_REQ}"
     )
     
