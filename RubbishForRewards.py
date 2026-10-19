@@ -171,7 +171,7 @@ def collection_popup():
             "Plastic": "mission2_status",
         }
 
-        if selected_type in mission_updates:
+        if st.session_state.selected_type in mission_updates:
             st.session_state[mission_updates[st.session_state.selected_type]] += weight
 
         st.write(
