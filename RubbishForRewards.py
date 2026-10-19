@@ -210,12 +210,6 @@ def collection_popup():
                 st.session_state.xpbonus += bonus_to_add
                 st.session_state.points += bonus_to_add
 
-                if selected_type == "Paper":
-                    st.session_state.mission1_status += weight
-
-                elif selected_type == "Plastic":
-                    st.session_state.mission2_status += weight
-                    
                 st.session_state.banner = (
                     f"Success! Reward Earned: {reward:.2f} points"
                     f" (+{bonus_to_add} Bonus XP)"
