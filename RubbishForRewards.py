@@ -12,10 +12,11 @@ st.session_state.setdefault("popup_step", 1)
 st.session_state.setdefault("selected_type", None) # Selected Type
 st.session_state.setdefault("weight", 0.0) #Weight
 
-# Rewards
+# XP Rewards
 st.session_state.setdefault("points", 0) # Rank XP
 st.session_state.setdefault("xpbonus", 0) # Bonus XP
 
+# Point Rewards
 if "reward_total" not in st.session_state:
     st.session_state.reward_total = 0
 
@@ -245,8 +246,6 @@ st.divider()
 # MISSIONS
 # ––––––––––––––––
 
-st.write("XP DEBUG:", st.session_state)
-
 with st.expander("Missions"):
 
     st.write("**50 XP per Mission reward claimed**")
@@ -327,7 +326,6 @@ with st.expander("Missions"):
 
     # ----------------
     # MISSION 3 - Collect 150 Points
-    st.session_state.mission3_status = st.session_state.reward_total
     
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
