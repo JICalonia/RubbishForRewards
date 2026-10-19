@@ -186,17 +186,26 @@ def collection_popup():
 
             if st.button("Proceed"):
 
-                st.session_state.active_dialog = False
-
-                bonus_xp = reward // 5    # Divides the Reward Earned to 5 and leaving the quotient
-                st.session_state.points += bonus_xp    # Adds the XP to the Rank Bar
+                st.session_state.active_dialog = None
 
                 bonus_earned = reward // 5    # Divides the Reward Earned to 5 and leaving the quotient
-                st.session_state.xpbonus += bonus_earned    # Adds the XP to the Bonus Bar
+                
+                remaining_bonus = max(
+                    0,
+                    SESSION_BONUS - st.session_state.xpbonus
+                )
 
+                bonus_to_add = min(
+                    bonus_earned,
+                    remaining_bonus
+                )
+
+                st.session_state.xpbonus += bonus_to_add
+                st.session_state.points += bonus_to_add
+                
                 st.session_state.banner = (
                     f"Success! Reward Earned: {reward:.2f} points"
-                    f" (+{bonus_earned} Bonus XP)"
+                    f" (+{bonus_to_add} Bonus XP)"
                 )
 
                 st.session_state.banner_type = "success"
