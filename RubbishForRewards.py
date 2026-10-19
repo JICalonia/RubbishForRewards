@@ -62,11 +62,13 @@ TYPES = {
     "Glass": 8
 }
 
+# ––––––––––––––––
 # TITLE
 # This is where I can type this
+# ––––––––––––––––
 
 st.title("♻️ Rubbish-For-Rewards 🪙")
-st.write("BETA 1.3")
+st.write("BETA 1.4")
 st.write(" ")
 st.write("Rubbish-For-Rewards is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.")
 
