@@ -172,7 +172,7 @@ def collection_popup():
         }
 
         if st.session_state.selected_type in mission_updates:
-            st.session_state[mission_updates[st.session_state.selected_type]] += weight
+            st.session_state[mission_updates[st.session_state.selected_type]] += st.session_state.weight
 
         st.write(
             f"**Reward:** {reward:.2f} points"
