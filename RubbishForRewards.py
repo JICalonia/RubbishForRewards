@@ -163,7 +163,7 @@ def collection_popup():
         )
 
         # Reward = Type * Weight
-        reward = TYPES[selected_type] * weight
+        reward = TYPES[st.session_state.selected_type] * weight
 
         st.session_state.reward_total += reward
 
