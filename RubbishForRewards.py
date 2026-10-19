@@ -96,6 +96,11 @@ st.progress(
     text=f"Session Bonus: {bonus_xp:.0f}/{SESSION_BONUS} XP"
 )
 
+st.session_state.bonus_xp = min(
+    st.session_state.bonus_xp + bonus_earned,
+    SESSION_BONUS
+)
+
 # ––––––––––––––––
 # COLLECTION
 # ––––––––––––––––
