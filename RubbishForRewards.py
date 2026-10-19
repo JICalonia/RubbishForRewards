@@ -80,15 +80,33 @@ st.subheader("Your Rank")
 
 # XP Rank
 XP_TO_RANK_TWO = 250 # Det. the current rank 
+XP_TO_RANK_THREE = 500
 
 current_xp = st.session_state.points
 
-st.write("**Current Rank:** Beginner")
+current_xp = st.session_state.points
 
-st.progress(
-    min(current_xp / XP_TO_RANK_TWO, 1.0),
-    text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
-)
+if current_xp < XP_TO_RANK_TWO:
+
+    current_rank = "Beginner"
+
+    st.progress(
+        min(current_xp / XP_TO_RANK_TWO, 1.0),
+        text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
+    )
+
+else:
+
+    current_rank = "Intermediate"
+
+    rank_xp = current_xp - XP_TO_RANK_TWO
+
+    st.progress(
+        min(rank_xp / XP_TO_RANK_THREE, 1.0),
+        text=f"{rank_xp:.0f}/{XP_TO_RANK_THREE} XP to next rank"
+    )
+
+st.write(f"**Current Rank:** {current_rank}") # Dets. the Current Rank
 
 # Session XP Bonus
 SESSION_BONUS = 100
