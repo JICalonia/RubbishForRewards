@@ -164,8 +164,15 @@ def collection_popup():
 
         # Reward = Type * Weight
         reward = TYPES[st.session_state.selected_type] * st.session_state.weight
-
         st.session_state.reward_total += reward
+
+        mission_updates = {
+            "Paper": "mission1_status",
+            "Plastic": "mission2_status",
+        }
+
+        if selected_type in mission_updates:
+            st.session_state[mission_updates[st.session_state.selected_type]] += weight
 
         st.write(
             f"**Reward:** {reward:.2f} points"
