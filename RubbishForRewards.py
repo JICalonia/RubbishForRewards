@@ -16,6 +16,9 @@ st.session_state.setdefault("weight", 0.0) #Weight
 st.session_state.setdefault("points", 0) # Rank XP
 st.session_state.setdefault("xpbonus", 0) # Bonus XP
 
+if "reward_total" not in st.session_state:
+    st.session_state.reward_total = 0
+
 # Banners
 st.session_state.setdefault("banner", "")
 st.session_state.setdefault("banner_type", "")
@@ -160,12 +163,9 @@ def collection_popup():
         )
 
         # Reward = Type * Weight
-        reward = (
-            TYPES[
-                st.session_state.selected_type
-            ]
-            * st.session_state.weight
-        )
+        reward = TYPES[selected_type] * weight
+
+        st.session_state.reward_total += reward
 
         st.write(
             f"**Reward:** {reward:.2f} points"
@@ -186,6 +186,9 @@ def collection_popup():
 
             if st.button("Proceed"):
 
+                st.write(selected_type)
+                st.write(weight)
+                
                 st.session_state.active_dialog = None
 
                 bonus_earned = reward // 5    # Divides the Reward Earned to 5 and leaving the quotient
@@ -202,7 +205,13 @@ def collection_popup():
 
                 st.session_state.xpbonus += bonus_to_add
                 st.session_state.points += bonus_to_add
-                
+
+                if selected_type == "Paper":
+                    st.session_state.mission1_status += weight
+
+                elif selected_type == "Plastic":
+                    st.session_state.mission2_status += weight
+                    
                 st.session_state.banner = (
                     f"Success! Reward Earned: {reward:.2f} points"
                     f" (+{bonus_to_add} Bonus XP)"
@@ -322,7 +331,7 @@ with st.expander("Missions"):
 
     # ----------------
     # MISSION 3 - Collect 150 Points
-    st.session_state.mission3_status = st.session_state.points
+    st.session_state.mission3_status = st.session_state.reward_total
     
     if "mission3_claimed" not in st.session_state:
         st.session_state.mission3_claimed = False
