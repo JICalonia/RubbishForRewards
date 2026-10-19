@@ -86,27 +86,25 @@ current_xp = st.session_state.points
 
 current_xp = st.session_state.points
 
+# Determine rank first
 if current_xp < XP_TO_RANK_TWO:
-
     current_rank = "Beginner"
-
-    st.progress(
-        min(current_xp / XP_TO_RANK_TWO, 1.0),
-        text=f"{current_xp:.0f}/{XP_TO_RANK_TWO} XP to next rank"
-    )
+    display_xp = current_xp
+    max_xp = XP_TO_RANK_TWO
 
 else:
-
     current_rank = "Intermediate"
+    display_xp = current_xp - XP_TO_RANK_TWO
+    max_xp = XP_TO_RANK_THREE
 
-    rank_xp = current_xp - XP_TO_RANK_TWO
+# Now it's safe to use current_rank here
+st.write(f"**Current Rank:** {current_rank}")
 
-    st.progress(
-        min(rank_xp / XP_TO_RANK_THREE, 1.0),
-        text=f"{rank_xp:.0f}/{XP_TO_RANK_THREE} XP to next rank"
-    )
-
-st.write(f"**Current Rank:** {current_rank}") # Dets. the Current Rank
+# Rank XP Bar
+st.progress(
+    min(display_xp / max_xp, 1.0),
+    text=f"{display_xp:.0f}/{max_xp} XP to next rank"
+)
 
 # Session XP Bonus
 SESSION_BONUS = 100
