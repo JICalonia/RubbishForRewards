@@ -192,9 +192,6 @@ def collection_popup():
 
                 elif st.session_state.selected_type == "Plastic":
                     st.session_state.mission2_status += st.session_state.weight
-                    
-                st.write(selected_type)
-                st.write(weight)
                 
                 st.session_state.active_dialog = None
 
