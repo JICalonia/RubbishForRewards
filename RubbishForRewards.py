@@ -193,6 +193,8 @@ def collection_popup():
 
                 elif st.session_state.selected_type == "Plastic":
                     st.session_state.mission2_status += st.session_state.weight
+
+                st.session_state.mission3_status = reward
                 
                 st.session_state.active_dialog = None
 
@@ -208,8 +210,8 @@ def collection_popup():
                     remaining_bonus
                 )
 
-                st.session_state.xpbonus += bonus_to_add
-                st.session_state.points += bonus_to_add
+                st.session_state.xpbonus += bonus_to_add # Adds XP to Bonus Bar
+                st.session_state.points += bonus_to_add # Adds XP to Rank Bar
 
                 st.session_state.banner = (
                     f"Success! Reward Earned: {reward:.2f} points"
@@ -252,9 +254,7 @@ with st.expander("Missions"):
 
     # ----------------
     # MISSION 1 - Submit 25 kg worth of Paper waste
-
-    # VOID
-        
+  
     if "mission1_claimed" not in st.session_state:
         st.session_state.mission1_claimed = False
 
@@ -289,9 +289,7 @@ with st.expander("Missions"):
 
     # ----------------
     # MISSION 2 - Submit 20 kg worth of Plastic waste
-
-    # VOID
-        
+ 
     if "mission2_claimed" not in st.session_state:
         st.session_state.mission2_claimed = False
 
