@@ -1,8 +1,7 @@
 # Rubbish-For-Rewards
  
 ## Project Description
-Rubbish-For-Rewards is a Python OOP application that helps
-students submit and track campus service requests.
+Rubbish-For-Rewards is a simulation website designed to teach people about waste management, while also keeping it fun by collecting and submitting trash and obtaining rewards in return.
  
 ## High-Priority Features
 1. Student registration
