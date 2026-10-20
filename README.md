@@ -15,23 +15,20 @@ Rubbish-For-Rewards is a simulation website designed to teach people about waste
 - Streamlit
  
 ## OOP Implementation
-- Encapsulation: Request status is controlled by methods.
-- Inheritance: Student and Staff extend User.
-- Polymorphism: Different users have different permissions.
-- Abstraction: Controllers hide internal processing steps.
+- Polymorphism: Different classes using the same method name with different behaviors.
+- Abstraction: Creating classes that hide complex implementation details.
  
 ## Project Structure
-- models/: Application classes
-- views/: User interface
+- app.py: Main Application
+- assets/: Assets, including background
 - controllers/: Application operations
 - repositories/: Database access
  
 ## Installation
-1. Download or clone the repository.
-2. Create and activate a Python environment.
-3. Install the required packages.
-4. Configure the application.
-5. Run the main Python file.
+1. Download or clone the repository
+2. Open Project folder
+3. Install Dependencies
+4. Run the application
  
 ## Developers
 - Jacob Isaiah T. Calonia
